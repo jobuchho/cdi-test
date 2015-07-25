@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>de.hilling.junit.cdi</groupId>
-            <artifactId>cdi-test-core</artifactId>
+            <artifactId>cdi-test-api</artifactId>
             <version>0.10.2-SNAPSHOT</version>
         </dependency>
         <dependency>

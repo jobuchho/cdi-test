@@ -1,6 +1,5 @@
 package de.hilling.junit.cdi.lifecycle;
 
-import de.hilling.junit.cdi.scope.EventType;
 import de.hilling.junit.cdi.scope.TestSuiteScoped;
 import org.junit.runner.Description;
 

@@ -3,7 +3,7 @@ package de.hilling.junit.cdi.jee;
 import de.hilling.junit.cdi.jee.jpa.ConnectionWrapper;
 import de.hilling.junit.cdi.jee.jpa.DatabaseCleaner;
 import de.hilling.junit.cdi.lifecycle.TestEvent;
-import de.hilling.junit.cdi.scope.EventType;
+import de.hilling.junit.cdi.lifecycle.EventType;
 import de.hilling.junit.cdi.scope.TestSuiteScoped;
 import org.junit.runner.Description;
 

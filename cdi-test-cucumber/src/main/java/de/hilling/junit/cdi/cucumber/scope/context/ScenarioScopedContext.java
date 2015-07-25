@@ -11,7 +11,7 @@ import org.junit.runner.Description;
 
 import de.hilling.junit.cdi.cucumber.scope.ScenarioScoped;
 import de.hilling.junit.cdi.lifecycle.TestEvent;
-import de.hilling.junit.cdi.scope.EventType;
+import de.hilling.junit.cdi.lifecycle.EventType;
 import de.hilling.junit.cdi.scope.context.AbstractScopeContext;
 import de.hilling.junit.cdi.scope.context.CustomScopeContextHolder;
 

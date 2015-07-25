@@ -2,7 +2,7 @@ package cucumber.runtime.java.cditest;
 
 import cucumber.runtime.java.ObjectFactory;
 import de.hilling.junit.cdi.lifecycle.LifecycleNotifier;
-import de.hilling.junit.cdi.scope.EventType;
+import de.hilling.junit.cdi.lifecycle.EventType;
 import org.apache.deltaspike.cdise.api.CdiContainer;
 import org.apache.deltaspike.cdise.api.CdiContainerLoader;
 import org.apache.deltaspike.cdise.api.ContextControl;

@@ -1,7 +1,7 @@
 package de.hilling.junit.cdi;
 
 import de.hilling.junit.cdi.lifecycle.LifecycleNotifier;
-import de.hilling.junit.cdi.scope.EventType;
+import de.hilling.junit.cdi.lifecycle.EventType;
 import de.hilling.junit.cdi.scope.MockManager;
 import de.hilling.junit.cdi.util.LoggerConfigurator;
 import org.apache.deltaspike.core.api.provider.BeanProvider;

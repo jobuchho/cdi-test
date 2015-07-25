@@ -1,4 +1,4 @@
-package de.hilling.junit.cdi.scope;
+package de.hilling.junit.cdi.lifecycle;
 
 /**
  * Unit test event type.
