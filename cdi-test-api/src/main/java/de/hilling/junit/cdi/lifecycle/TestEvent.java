@@ -6,9 +6,18 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Qualifier for lifecycle notifications during test execution.
+ *
+ * @see EventType
+ */
 @Qualifier
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TestEvent {
+    /**
+     * The type of the observed event.
+     * @return
+     */
     EventType value();
 }

@@ -7,6 +7,9 @@ import javax.enterprise.inject.Any;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.inject.Inject;
 
+/**
+ * Provide notifications for test lifecycle events.
+ */
 public class LifecycleNotifier {
 
     @Inject
