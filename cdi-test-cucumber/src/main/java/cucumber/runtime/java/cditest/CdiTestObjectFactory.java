@@ -1,14 +1,16 @@
 package cucumber.runtime.java.cditest;
 
-import cucumber.runtime.java.ObjectFactory;
+import cucumber.api.java.ObjectFactory;
 import de.hilling.junit.cdi.lifecycle.EventType;
-import de.hilling.junit.cdi.lifecycle.LifecycleNotifier;
+import de.hilling.junit.cdi.lifecycle.TestEvent;
 import org.apache.deltaspike.cdise.api.CdiContainer;
 import org.apache.deltaspike.cdise.api.CdiContainerLoader;
 import org.apache.deltaspike.cdise.api.ContextControl;
 import org.apache.deltaspike.core.api.provider.BeanProvider;
 import org.junit.runner.Description;
 
+import javax.enterprise.event.Event;
+import javax.enterprise.util.AnnotationLiteral;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -18,12 +20,13 @@ public class CdiTestObjectFactory implements ObjectFactory {
     private static final Logger LOG = Logger.getLogger(CdiTestObjectFactory.class.getCanonicalName());
 
     private ContextControl contextControl;
-    private LifecycleNotifier notifier;
+    private Event<Description> lifecycleEvent;
+    private static final Description DESCRIPTION = Description.createSuiteDescription("cucumber");
+
 
     {
         contextControl = BeanProvider.getContextualReference(ContextControl.class);
-        notifier = BeanProvider.getContextualReference(
-                LifecycleNotifier.class);
+        lifecycleEvent = BeanProvider.getContextualReference(Event.class);
     }
 
     static {
@@ -37,18 +40,20 @@ public class CdiTestObjectFactory implements ObjectFactory {
     public void start() {
         LOG.info("starting");
         contextControl.startContexts();
-        notifier.notify(EventType.STARTING, Description.createSuiteDescription("cucumber"));
+
+        notify(EventType.STARTING);
     }
 
     @Override
     public void stop() {
         contextControl.stopContexts();
-        notifier.notify(EventType.FINISHING, Description.createSuiteDescription("cucumber"));
+        notify(EventType.FINISHING);
         LOG.info("stopped");
     }
 
     @Override
-    public void addClass(Class<?> clazz) {
+    public boolean addClass(Class<?> clazz) {
+        return true;
     }
 
     @Override
@@ -59,4 +64,18 @@ public class CdiTestObjectFactory implements ObjectFactory {
         }
         return (T) definitions.get(clazz);
     }
+
+    private void notify(final EventType testCaseLifecycle) {
+        AnnotationLiteral<TestEvent> event = new TestEventLiteral() {
+            @Override
+            public EventType value() {
+                return testCaseLifecycle;
+            }
+        };
+        lifecycleEvent.select(event).fire(DESCRIPTION);
+    }
+
+    private static abstract class TestEventLiteral extends AnnotationLiteral<TestEvent> implements TestEvent {
+    }
+
 }
