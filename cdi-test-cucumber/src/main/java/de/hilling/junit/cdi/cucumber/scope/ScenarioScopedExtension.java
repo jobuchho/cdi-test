@@ -1,9 +1,8 @@
 package de.hilling.junit.cdi.cucumber.scope;
 
-import de.hilling.junit.cdi.cucumber.scope.context.ScenarioScopedContext;
-
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.spi.AfterBeanDiscovery;
+import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.BeforeBeanDiscovery;
 import javax.enterprise.inject.spi.Extension;
 import java.io.Serializable;
@@ -22,8 +21,8 @@ public class ScenarioScopedExtension implements Extension, Serializable {
         event.addScope(ScenarioScoped.class, true, false);
     }
 
-    public void afterBeanDiscovery(@Observes AfterBeanDiscovery afterBeanDiscovery) {
-        afterBeanDiscovery.addContext(new ScenarioScopedContext());
+    public void afterBeanDiscovery(@Observes AfterBeanDiscovery afterBeanDiscovery, BeanManager beanManager) {
+        afterBeanDiscovery.addContext(new ScenarioScopedContext(beanManager));
     }
 
 }

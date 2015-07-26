@@ -35,7 +35,7 @@
         </dependency>
         <dependency>
             <groupId>de.hilling.junit.cdi</groupId>
-            <artifactId>cdi-test-core</artifactId>
+            <artifactId>cdi-test-api</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -44,6 +44,11 @@
         </dependency>
 
         <!-- test dependencies -->
+        <dependency>
+            <groupId>de.hilling.junit.cdi</groupId>
+            <artifactId>cdi-test-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.jboss.weld.se</groupId>
             <artifactId>weld-se-core</artifactId>

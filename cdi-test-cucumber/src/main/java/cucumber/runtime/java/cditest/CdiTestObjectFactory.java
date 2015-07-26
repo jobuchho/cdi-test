@@ -1,8 +1,8 @@
 package cucumber.runtime.java.cditest;
 
 import cucumber.runtime.java.ObjectFactory;
-import de.hilling.junit.cdi.lifecycle.LifecycleNotifier;
 import de.hilling.junit.cdi.lifecycle.EventType;
+import de.hilling.junit.cdi.lifecycle.LifecycleNotifier;
 import org.apache.deltaspike.cdise.api.CdiContainer;
 import org.apache.deltaspike.cdise.api.CdiContainerLoader;
 import org.apache.deltaspike.cdise.api.ContextControl;
@@ -23,7 +23,7 @@ public class CdiTestObjectFactory implements ObjectFactory {
     {
         contextControl = BeanProvider.getContextualReference(ContextControl.class);
         notifier = BeanProvider.getContextualReference(
-                LifecycleNotifier.class, false);
+                LifecycleNotifier.class);
     }
 
     static {
@@ -53,7 +53,7 @@ public class CdiTestObjectFactory implements ObjectFactory {
 
     @Override
     public <T> T getInstance(Class<T> clazz) {
-        if (definitions.get(clazz) == null){
+        if (definitions.get(clazz) == null) {
             LOG.info("adding " + clazz);
             definitions.put(clazz, BeanProvider.getContextualReference(clazz, false));
         }

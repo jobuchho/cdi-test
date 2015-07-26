@@ -1,6 +1,5 @@
 package de.hilling.junit.cdi.lifecycle;
 
-import de.hilling.junit.cdi.scope.TestSuiteScoped;
 import org.junit.runner.Description;
 
 import javax.enterprise.event.Event;
@@ -8,7 +7,6 @@ import javax.enterprise.inject.Any;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.inject.Inject;
 
-@TestSuiteScoped
 public class LifecycleNotifier {
 
     @Inject
